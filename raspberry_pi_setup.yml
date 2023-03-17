@@ -1,7 +1,10 @@
 ---
-- name: Install Git, Python3, and Flask on Raspberry Pi
+- name: Install Git, Python3, Flask, and clone the repository on Raspberry Pi
   hosts: raspberry_pi
   become: yes
+  vars:
+    repo_url: "https://git.ece.iastate.edu/sd/sddec23-03.git"
+    destination_folder: "/home/pi/Desktop/sddec23-03"
   tasks:
     - name: Update and upgrade apt packages
       apt:
@@ -25,3 +28,12 @@
         name: Flask
         state: present
         executable: pip3
+
+    - name: Clone the repository
+      git:
+        repo: "{{ repo_url }}"
+        dest: "{{ destination_folder }}"
+        clone: yes
+        update: yes
+      become: no
+      become_user: pi
