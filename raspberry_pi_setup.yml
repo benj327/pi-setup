@@ -1,0 +1,27 @@
+---
+- name: Install Git, Python3, and Flask on Raspberry Pi
+  hosts: raspberry_pi
+  become: yes
+  tasks:
+    - name: Update and upgrade apt packages
+      apt:
+        update_cache: yes
+        upgrade: safe
+
+    - name: Install Git
+      apt:
+        name: git
+        state: present
+
+    - name: Install Python3 and pip
+      apt:
+        name:
+          - python3
+          - python3-pip
+        state: present
+
+    - name: Install Flask
+      pip:
+        name: Flask
+        state: present
+        executable: pip3
