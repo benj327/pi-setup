@@ -3,9 +3,7 @@
 This playbook will perform the following tasks:
 
 Update and upgrade the Raspberry Pi's apt packages.
-Install Git.
-Install Python3 and pip.
-Install Flask using pip3.
+Install Git, Python3, pip3, and then Flask using pip3.
 
 ## To Run
 
